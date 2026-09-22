@@ -1,0 +1,147 @@
+/* Option cards sit inside the white content card, so they take the page's
+   warm tint to stay distinct from it. Selecting one turns it orange. */
+.card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    background-color 120ms ease;
+}
+
+.card:hover {
+  border-color: var(--line-strong);
+}
+
+.icon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--orange);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.label {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.sublabel {
+  font-size: var(--text-xs);
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* The control: an empty box or circle that fills in when the input is checked. */
+.box,
+.circle {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--line-strong);
+  background: var(--surface);
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease;
+}
+
+.box {
+  border-radius: 6px;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+/* Checkmark and radio dot, revealed on :checked. */
+.box::after {
+  content: '';
+  width: 5px;
+  height: 9px;
+  margin-top: -2px;
+  border: solid var(--surface);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0.6);
+  opacity: 0;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.circle::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--surface);
+  transform: scale(0.4);
+  opacity: 0;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.input:checked ~ .box,
+.input:checked ~ .circle {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+.input:checked ~ .box::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+.input:checked ~ .circle::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Selected card: orange edge and a faint orange wash. */
+.card:has(.input:checked) {
+  background: var(--orange-soft);
+  border-color: var(--orange);
+  box-shadow: inset 0 0 0 1px var(--orange);
+}
+
+.card:has(.input:checked) .icon {
+  border-color: var(--orange-line);
+}
+
+/* Focus ring follows the hidden input and uses navy, so keyboard focus is never
+   confused with the orange selected state. */
+.card:has(.input:focus-visible) {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .box,
+  .circle,
+  .box::after,
+  .circle::after {
+    transition: none;
+  }
+}

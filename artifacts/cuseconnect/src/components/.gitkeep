@@ -1,0 +1,3 @@
+# Shared UI used by more than one feature.
+# Promote a component here from features/<name>/components/ once a second
+# feature needs it — don't guess up front.
