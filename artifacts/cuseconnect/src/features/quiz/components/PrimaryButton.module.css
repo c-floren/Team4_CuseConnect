@@ -1,0 +1,33 @@
+.button {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--orange);
+  color: var(--surface);
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--orange-hover);
+}
+
+.button:disabled {
+  background: var(--disabled-bg);
+  color: var(--disabled-ink);
+  cursor: not-allowed;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}
