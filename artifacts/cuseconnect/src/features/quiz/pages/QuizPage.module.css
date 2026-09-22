@@ -29,3 +29,33 @@
     gap: var(--space-4);
   }
 }
+
+/* Validation message. Shown only after Continue is pressed with nothing
+   chosen; role="alert" on the element is what announces it. The "!" mark
+   carries the meaning alongside the color, so it never reads as color alone. */
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--error-soft);
+  border: 1px solid var(--error-line);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--error);
+}
+
+.errorMark {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--error);
+  color: var(--surface);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}

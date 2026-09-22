@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { quizQuestions } from '../data/quizQuestions.js';
 import { useQuiz } from '../context/QuizContext.jsx';
@@ -14,6 +15,10 @@ export default function QuizPage() {
   const navigate = useNavigate();
   const { getAnswer, toggleAnswer, isAnswered } = useQuiz();
 
+  // Which step failed validation, rather than a plain boolean: the message then
+  // clears itself whenever the step changes, including via the URL bar.
+  const [unansweredStep, setUnansweredStep] = useState(null);
+
   const stepNumber = Number(step);
   const isValidStep =
     Number.isInteger(stepNumber) && stepNumber >= 1 && stepNumber <= TOTAL;
@@ -26,11 +31,25 @@ export default function QuizPage() {
 
   const question = quizQuestions[stepNumber - 1];
   const isLastStep = stepNumber === TOTAL;
+  const showError = unansweredStep === stepNumber;
+  const errorId = `quiz-error-${stepNumber}`;
 
-  const goForward = () =>
+  // Continue stays enabled and explains itself on click. A disabled button
+  // would give no reason, and keyboard users can skip past it entirely.
+  const goForward = () => {
+    if (!isAnswered(question.id)) {
+      setUnansweredStep(stepNumber);
+      return;
+    }
     navigate(isLastStep ? '/results' : `/quiz/${stepNumber + 1}`);
+  };
 
   const goBack = () => navigate(`/quiz/${stepNumber - 1}`);
+
+  const handleToggle = (optionId) => {
+    setUnansweredStep(null);
+    toggleAnswer(question.id, optionId, question.type);
+  };
 
   return (
     <main className={styles.page}>
@@ -40,8 +59,6 @@ export default function QuizPage() {
           total={TOTAL}
           canGoBack={stepNumber > 1}
           onBack={goBack}
-          // Skip advances without recording an answer.
-          onSkip={goForward}
         />
 
         <QuestionHeader
@@ -54,12 +71,24 @@ export default function QuizPage() {
         <OptionList
           question={question}
           answer={getAnswer(question.id, question.type)}
-          onToggle={(optionId) =>
-            toggleAnswer(question.id, optionId, question.type)
-          }
+          onToggle={handleToggle}
         />
 
-        <PrimaryButton onClick={goForward} disabled={!isAnswered(question.id)}>
+        {showError && (
+          <p className={styles.error} id={errorId} role="alert">
+            <span className={styles.errorMark} aria-hidden="true">
+              !
+            </span>
+            {question.type === 'multi'
+              ? 'Pick at least one option to continue.'
+              : 'Choose an option to continue.'}
+          </p>
+        )}
+
+        <PrimaryButton
+          onClick={goForward}
+          aria-describedby={showError ? errorId : undefined}
+        >
           {isLastStep ? 'See my matches' : 'Continue'}
         </PrimaryButton>
       </div>

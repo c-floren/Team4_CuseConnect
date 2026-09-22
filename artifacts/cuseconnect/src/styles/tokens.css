@@ -25,6 +25,11 @@
   /* Logo navy — focus rings, so focus never reads as "selected". */
   --navy: #0b256c;
 
+  /* Validation — only surfaces when someone tries to advance unanswered. */
+  --error: #b3261e;
+  --error-soft: #fdf1f0;
+  --error-line: #f0cbc7;
+
   /* Disabled */
   --disabled-bg: #ebe7e0;
   --disabled-ink: #a49e94;

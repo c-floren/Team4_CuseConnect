@@ -1,10 +1,11 @@
 import styles from './QuizProgress.module.css';
 
 /**
- * The wireframe's top row: "← Back" on the left, one progress segment per
- * question in the middle, "Skip" on the right.
+ * The wireframe's top row: "Back" on the left and one progress segment per
+ * question filling the rest. Every question is required, so there is no Skip —
+ * QuizPage blocks forward navigation until the current question is answered.
  */
-export default function QuizProgress({ current, total, onBack, onSkip, canGoBack }) {
+export default function QuizProgress({ current, total, onBack, canGoBack }) {
   const segments = Array.from({ length: total }, (_, index) => index + 1);
 
   return (
@@ -33,10 +34,6 @@ export default function QuizProgress({ current, total, onBack, onSkip, canGoBack
           />
         ))}
       </div>
-
-      <button type="button" className={styles.secondary} onClick={onSkip}>
-        Skip
-      </button>
     </div>
   );
 }
