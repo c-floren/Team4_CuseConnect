@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuse Connect — Explore Clubs</title>
+<style>
+  :root {
+    --orange: #D44500;
+    --orange-dark: #A83700;
+    --white: #FFFFFF;
+    --bg: #FAF8F6;
+    --text: #1A1A1A;
+    --text-muted: #6B6560;
+    --border: #E8E2DA;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  header {
+    padding: 32px 24px 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  header p {
+    margin: 6px 0 0;
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  .club-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 16px 24px 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 800px) {
+    .club-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .club-grid { grid-template-columns: 1fr; }
+  }
+
+  .club-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: border-color 0.15s ease;
+  }
+
+  .club-card:hover,
+  .club-card:focus-visible {
+    border-color: var(--orange);
+    outline: none;
+  }
+
+  .club-card img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--orange);
+  }
+
+  .club-card .club-name {
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  /* Modal */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10;
+  }
+
+  .overlay.open { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: 14px;
+    max-width: 380px;
+    width: 100%;
+    padding: 24px;
+    position: relative;
+  }
+
+  .modal img {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--orange);
+    display: block;
+    margin: 0 auto 12px;
+  }
+
+  .modal h2 {
+    margin: 0 0 4px;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .modal .meta {
+    text-align: center;
+    color: var(--orange-dark);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .modal p.desc {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 18px;
+  }
+
+  .modal .close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .modal .join-btn {
+    display: block;
+    width: 100%;
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .modal .join-btn:hover { background: var(--orange-dark); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Explore Clubs</h1>
+  <p>Find a club or organization to get involved with at SU.</p>
+</header>
+
+<div class="club-grid" id="clubGrid"></div>
+
+<div class="overlay" id="overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <button class="close-btn" id="closeBtn" aria-label="Close">✕</button>
+    <img id="modalImg" src="" alt="">
+    <h2 id="modalName"></h2>
+    <div class="meta" id="modalMeta"></div>
+    <p class="desc" id="modalDesc"></p>
+    <button class="join-btn">Join club</button>
+  </div>
+</div>
+
+<script>
+  const clubs = [
+    {
+      name: "SU Robotics Club",
+      img: "https://picsum.photos/seed/robotics/200",
+      meets: "Thursdays, 6 PM · Link Hall",
+      desc: "Students design, build, and compete with robots. No experience needed — just curiosity and a willingness to get hands-on."
+    },
+    {
+      name: "Orange Filmworks",
+      img: "https://picsum.photos/seed/film/200",
+      meets: "Tuesdays, 7 PM · Newhouse 3",
+      desc: "A student-run production team that writes, shoots, and edits short films together each semester."
+    },
+    {
+      name: "Cuse Hacks",
+      img: "https://picsum.photos/seed/hacks/200",
+      meets: "Mondays, 8 PM · CST Building",
+      desc: "Syracuse's student hackathon community. Build projects, learn new tools, and meet other builders on campus."
+    },
+    {
+      name: "SU Outing Club",
+      img: "https://picsum.photos/seed/outing/200",
+      meets: "Weekends · Meet at Schine",
+      desc: "Weekend hikes, camping trips, and climbing outings around Central New York for students of any experience level."
+    },
+    {
+      name: "Best Buddies Syracuse",
+      img: "https://picsum.photos/seed/buddies/200",
+      meets: "Wednesdays, 5 PM · Schine 304A",
+      desc: "Builds one-to-one friendships between SU students and members of the local community with intellectual disabilities."
+    },
+    {
+      name: "WAER Sports Broadcasting",
+      img: "https://picsum.photos/seed/waer/200",
+      meets: "Game days · Newhouse Studios",
+      desc: "Student broadcasters calling live Syracuse sports, producing shows, and building a demo reel for the industry."
+    }
+  ];
+
+  const grid = document.getElementById("clubGrid");
+  const overlay = document.getElementById("overlay");
+  const modalImg = document.getElementById("modalImg");
+  const modalName = document.getElementById("modalName");
+  const modalMeta = document.getElementById("modalMeta");
+  const modalDesc = document.getElementById("modalDesc");
+
+  clubs.forEach(club => {
+    const card = document.createElement("button");
+    card.className = "club-card";
+    card.innerHTML = `
+      <img src="${club.img}" alt="${club.name} logo">
+      <span class="club-name">${club.name}</span>
+    `;
+    card.addEventListener("click", () => openModal(club));
+    grid.appendChild(card);
+  });
+
+  function openModal(club) {
+    modalImg.src = club.img;
+    modalImg.alt = club.name + " logo";
+    modalName.textContent = club.name;
+    modalMeta.textContent = club.meets;
+    modalDesc.textContent = club.desc;
+    overlay.classList.add("open");
+  }
+
+  function closeModal() {
+    overlay.classList.remove("open");
+  }
+
+  document.getElementById("closeBtn").addEventListener("click", closeModal);
+  overlay.addEventListener("click", e => {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeModal();
+  });
+</script>
+
+</body>
+</html>
