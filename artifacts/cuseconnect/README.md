@@ -17,7 +17,39 @@ npm run dev
 
 Then open the URL Vite prints (usually http://localhost:5173). It redirects to `/quiz/1`.
 
-Other scripts: `npm run build`, `npm run preview`.
+Other scripts: `npm run build`, `npm run preview`, `npm run db:check`.
+
+## Connecting to the database
+
+The team shares one [Supabase](https://supabase.com) project (hosted Postgres). Ask a teammate for
+an invite to the **CuseConnect** project if you don't see it in your dashboard.
+
+1. Copy the env template: `cp .env.example .env.local`
+2. In the Supabase dashboard, open **Project Settings → API** and paste the **Project URL** and
+   **anon public** key into `.env.local`.
+3. Check the connection: `npm run db:check` — it should list the seeded clubs.
+4. Restart `npm run dev` if it was already running (Vite reads env files on startup).
+
+In code, import the shared client — don't create a new one:
+
+```js
+import { supabase } from '../../../lib/supabaseClient';
+
+const { data, error } = await supabase.from('clubs').select('*');
+```
+
+**Keys:** `.env.local` is git-ignored, so keys stay off GitHub. The anon key ends up in the
+browser anyway — Row Level Security is what protects the data. **Never** use or commit the
+`service_role` key; it bypasses every security rule.
+
+**Schema:** `supabase/setup.sql` creates the tables, security policies, and sample clubs. It's
+already been run on the shared project; re-run it in the SQL Editor after changing it (it's safe
+to run twice).
+
+| Table            | What it holds                     | App can…           |
+| ---------------- | --------------------------------- | ------------------ |
+| `clubs`          | name, description, category, tags | read               |
+| `quiz_responses` | quiz answers as JSON              | insert (not read)  |
 
 ## Layout
 
@@ -29,6 +61,8 @@ src/
     tokens.css          colors, spacing, type — the single source of design values
     global.css          resets, body styles, the .srOnly helper
   components/           shared UI, used by 2+ features
+  lib/
+    supabaseClient.js   the one shared database client
   features/
     quiz/               3-question matching quiz
       data/             mock question content
