@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./ClubDetailsPage.css";
 
 const clubs = [
   {
@@ -38,43 +39,66 @@ function ClubDetailsPage() {
             className="club-card"
             onClick={() => setSelectedClub(club)}
           >
-            <img src={club.img} alt={`${club.name} logo`} />
-            <span className="club-name">{club.name}</span>
+            <img 
+              src={club.img} 
+              alt={`${club.name} logo`} 
+            />
+
+            <span className="club-name">
+              {club.name}
+            </span>
           </button>
         ))}
       </div>
 
+
       {selectedClub && (
         <div className="overlay open">
-          <div className="modal">
+          <div
+            className="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="club-title"
+          >
+
             <button
               className="close-btn"
               onClick={() => setSelectedClub(null)}
+              aria-label="Close club details"
             >
               ✕
             </button>
+
 
             <img
               src={selectedClub.img}
               alt={`${selectedClub.name} logo`}
             />
 
-            <h2>{selectedClub.name}</h2>
+
+            <h2 id="club-title">
+              {selectedClub.name}
+            </h2>
+
 
             <div className="meta">
               {selectedClub.meets}
             </div>
 
+
             <p className="desc">
               {selectedClub.desc}
             </p>
 
+
             <button className="join-btn">
               Join club
             </button>
+
           </div>
         </div>
       )}
+
     </div>
   );
 }
