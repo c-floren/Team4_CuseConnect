@@ -1,5 +1,5 @@
 .page {
-  min-height: 100vh;
+  flex: 1;
   display: grid;
   place-items: center;
   padding: var(--space-7) var(--space-4);

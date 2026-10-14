@@ -15,7 +15,11 @@ npm install
 npm run dev
 ```
 
-Then open the URL Vite prints (usually http://localhost:5173). It redirects to `/quiz/1`.
+Then open the URL Vite prints (usually http://localhost:5173). `/` is the organizations page; the
+sidebar's Quiz link goes to `/quiz/1`.
+
+Opening `index.html` straight from disk shows a blank page: the browser can't run `.jsx`, so the
+app only works through `npm run dev` (or a `npm run build` served by `npm run preview`).
 
 Other scripts: `npm run build`, `npm run preview`, `npm run db:check`.
 
@@ -60,10 +64,17 @@ src/
   styles/
     tokens.css          colors, spacing, type — the single source of design values
     global.css          resets, body styles, the .srOnly helper
+  assets/               images imported by components (e.g. the logo)
   components/           shared UI, used by 2+ features
+    AppLayout.jsx       sidebar + top bar around every page
+    Sidebar.jsx         main navigation
   lib/
     supabaseClient.js   the one shared database client
   features/
+    organizations/      home page: recommended organizations
+      data/             placeholder recommendations
+      pages/            OrganizationsPage
+      components/       OrgCard
     quiz/               3-question matching quiz
       data/             mock question content
       context/          answer state shared across quiz steps
@@ -84,11 +95,27 @@ src/
 ## Adding a feature
 
 1. `src/features/<name>/` with `pages/`, `components/`, and `data/` as needed.
-2. Add its route to `src/App.jsx`.
-3. Pull design values from `styles/tokens.css`.
+2. Add its route to `src/App.jsx`, inside the `<AppLayout />` route so it gets the sidebar.
+3. Give its sidebar entry a `to` in `src/components/Sidebar.jsx` (entries without one show as "Soon").
+4. Pull design values from `styles/tokens.css`.
+
+## Linking between pages
+
+Pages are components, not separate HTML files. Link to a route with React Router's `<Link>` (or
+`<NavLink>` for navigation that highlights the current page), never `<a href="other.html">`:
+
+```jsx
+import { Link } from 'react-router-dom';
+
+<Link to="/quiz/1">Take the quiz</Link>
+```
+
+A plain `<a href>` reloads the whole app, which wipes in-memory state such as quiz answers.
 
 ## Current status
 
-The quiz flow (`/quiz/1` → `/quiz/2` → `/quiz/3` → `/results`) is built against
-`artifacts/quiz-wireframe.pdf`. The Welcome screen and real matching logic are separate stories;
-`/results` is a placeholder.
+- `/`: organizations page, converted from the static `Index.html` mockup; cards are placeholders.
+- `/quiz/1` → `/quiz/2` → `/quiz/3` → `/results`: built against `artifacts/quiz-wireframe.pdf`.
+  `/results` is a placeholder.
+- Events, Saved Orgs, Forms and Friends aren't built yet. The Welcome screen and real matching logic
+  are separate stories.
