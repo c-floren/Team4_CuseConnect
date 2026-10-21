@@ -1,0 +1,52 @@
+.app {
+  min-height: 100vh;
+}
+
+/* A flex column so each page's root can take `flex: 1` and fill the height
+   left under the top bar. */
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 0;
+  margin-left: var(--sidebar-width);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: var(--topbar-height);
+  padding: 0 var(--space-6);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  z-index: 10;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--surface);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .main {
+    min-height: 0;
+    margin-left: 0;
+  }
+
+  /* On phones the sidebar strip already sits at the top; a second bar would
+     just eat height above the quiz. */
+  .topbar {
+    display: none;
+  }
+}
