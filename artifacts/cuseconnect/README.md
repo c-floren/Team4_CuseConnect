@@ -34,6 +34,11 @@ an invite to the **CuseConnect** project if you don't see it in your dashboard.
 3. Check the connection: `npm run db:check` — it should list the seeded clubs.
 4. Restart `npm run dev` if it was already running (Vite reads env files on startup).
 
+**Demo mode:** set `VITE_DEMO_MODE=true` in `.env.local` to load clubs from local sample data
+(`src/features/organizations/data/demoClubs.js`) instead of Supabase. No keys needed, and a
+"Demo mode" banner shows on every page so sample clubs are never mistaken for real ones. Demo and
+real data never mix — read clubs through `getClubs()`, which is the only place that checks the flag.
+
 In code, import the shared client — don't create a new one:
 
 ```js
@@ -68,11 +73,13 @@ src/
   components/           shared UI, used by 2+ features
     AppLayout.jsx       sidebar + top bar around every page
     Sidebar.jsx         main navigation
+    DemoBanner.jsx      "Demo mode" notice, shown while VITE_DEMO_MODE=true
   lib/
     supabaseClient.js   the one shared database client
+    demoMode.js         isDemoMode() — reads VITE_DEMO_MODE
   features/
-    organizations/      home page: recommended organizations
-      data/             placeholder recommendations
+    organizations/      home page: club listing
+      data/             getClubs() and demo-mode sample clubs
       pages/            OrganizationsPage
       components/       OrgCard
     quiz/               3-question matching quiz
