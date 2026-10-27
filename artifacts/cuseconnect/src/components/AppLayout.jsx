@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import DemoBanner from './DemoBanner.jsx';
 import Sidebar from './Sidebar.jsx';
 import styles from './AppLayout.module.css';
 
@@ -12,6 +13,8 @@ export default function AppLayout() {
       <Sidebar />
 
       <div className={styles.main}>
+        <DemoBanner />
+
         <header className={styles.topbar}>
           {/* Placeholder until sign-in gives us a real user. */}
           <div className={styles.avatar} aria-hidden="true">

@@ -1,0 +1,15 @@
+.banner {
+  margin: 0;
+  padding: var(--space-2) var(--space-6);
+  background: var(--orange-soft);
+  border-bottom: 1px solid var(--orange-line);
+  color: var(--ink);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .banner {
+    padding: var(--space-2) var(--space-4);
+  }
+}
