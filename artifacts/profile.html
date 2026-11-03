@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CuseConnect — My Profile</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="mainSidebar">
+      <div class="brand">
+        <img class="logo" src="cuseconnect-logo.png" alt="CuseConnect logo">
+      </div>
+
+      <nav class="nav-group">
+        <a href="_cuseconnect.html" class="nav-item">Home</a>
+        <a href="#" class="nav-item">Events</a>
+        <a href="#" class="nav-item">Saved Orgs</a>
+        <a href="#" class="nav-item">Forms</a>
+        <a href="friends.html" class="nav-item">Friends</a>
+      </nav>
+    </aside>
+
+    <!-- Main column -->
+    <div class="main">
+      <div class="page">
+        <div class="page-header">
+          <h1 class="page-title">My Profile</h1>
+        </div>
+
+        <div class="profile-card">
+
+          <div class="profile-photo-wrap">
+            <img id="profilePhoto" class="profile-photo"
+                 src="https://placehold.co/160x160/F7F6F3/6B6A66?text=Add+Photo"
+                 alt="Profile photo">
+            <label class="photo-upload-btn" for="photoInput">Change Photo</label>
+            <input type="file" id="photoInput" accept="image/*" hidden>
+          </div>
+
+          <div class="profile-fields"> <!-- class for where the user can input their own information -->
+
+            <div class="field-row">
+              <label>Name</label>
+              <span class="field-display" id="nameDisplay">Your Name</span>
+              <input class="field-input" id="nameInput" type="text" placeholder="Your name" hidden>
+            </div>
+
+            <div class="field-row">
+              <label>Birthdate</label>
+              <span class="field-display" id="birthdateDisplay">Not set</span>
+              <input class="field-input" id="birthdateInput" type="date" hidden>
+            </div>
+
+            <div class="field-row">
+              <label>Major</label>
+              <span class="field-display" id="majorDisplay">Not set</span>
+              <input class="field-input" id="majorInput" type="text" placeholder="e.g. Computer Science" hidden>
+            </div>
+
+            <div class="profile-actions">
+              <button id="editBtn" class="btn-accept">Edit Profile</button>
+              <button id="saveBtn" class="btn-accept" hidden>Save</button>
+              <button id="cancelBtn" class="btn-decline" hidden>Cancel</button>
+            </div>
+
+          </div> <!-- end of profile field class -->
+        </div> <!-- end of profile card class -->
+
+        <h2 class="section-title">Your Organizations</h2>
+        <!--
+          Read-only for now — this grid reflects orgs the user has joined
+          elsewhere on the site. Same card style as the recommendations
+          grid on the home page. Replace the placeholders with real org
+          names/descriptions once that data exists.
+        -->
+
+        <!--- has to be changed when working on user functionality>
+        <div class="org-grid">
+
+          <div class="org-card">
+            <div class="org-art">1</div>
+            <h3>Org 1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+
+          <div class="org-card">
+            <div class="org-art">2</div>
+            <h3>Org 2</h3>
+            <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+          </div>
+
+          <div class="org-card">
+            <div class="org-art">3</div>
+            <h3>Org 3</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation.</p>
+          </div>
+
+        </div>
+
+      </div> <!-- end of page class -->
+    </div> <!-- end of main div class -->
+  </div> <!-- end of app class -->
+
+  <script src="profile.js"></script>
+</body>
+</html>
