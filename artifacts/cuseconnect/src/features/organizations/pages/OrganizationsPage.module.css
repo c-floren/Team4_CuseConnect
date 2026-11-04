@@ -116,3 +116,10 @@
     box-sizing: border-box;
   }
 }
+
+/* Display club cards in one column on phones */
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

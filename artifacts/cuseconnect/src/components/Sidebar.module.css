@@ -104,3 +104,26 @@ a.active:hover {
     display: none;
   }
 }
+
+/* Improve navigation layout on smaller phones */
+@media (max-width: 480px) {
+  .sidebar {
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+    overflow-x: hidden;
+  }
+
+  .logo {
+    width: 48px;
+  }
+
+  .navList {
+    gap: 8px;
+  }
+
+  .navItem {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
