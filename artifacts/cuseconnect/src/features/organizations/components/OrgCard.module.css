@@ -37,3 +37,24 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
+/* Mobile-friendly club cards */
+@media (max-width: 480px) {
+  .art {
+    aspect-ratio: auto;
+    height: 120px;
+    font-size: var(--text-xl);
+  }
+
+  .card {
+    padding: var(--space-3);
+  }
+
+  .name {
+    font-size: 16px;
+  }
+
+  .blurb {
+    -webkit-line-clamp: 3;
+  }
+}
