@@ -9,7 +9,7 @@ import styles from './Sidebar.module.css';
 const navItems = [
   { label: 'Home', to: '/', end: true },
   { label: 'Events' },
-  { label: 'Saved Orgs' },
+  { label: 'Saved Orgs', to: '/saved' },
   { label: 'Forms' },
   { label: 'Friends' },
   { label: 'Quiz', to: '/quiz' },

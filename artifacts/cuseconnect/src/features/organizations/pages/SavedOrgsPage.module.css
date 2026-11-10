@@ -1,0 +1,73 @@
+/* Same layout as the Explore Clubs page, so the two feel like one app. */
+.page {
+	flex: 1;
+	padding: var(--space-6) var(--space-6) var(--space-7);
+}
+
+.title {
+	margin: 0 0 var(--space-6);
+	text-align: center;
+	font-size: var(--text-2xl);
+	font-weight: 700;
+	letter-spacing: 0.2px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+	gap: var(--space-5);
+	max-width: var(--wide-width);
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+}
+
+.message {
+	margin: 0;
+	color: var(--muted);
+	text-align: center;
+}
+
+.error {
+	max-width: var(--wide-width);
+	margin: 0 auto var(--space-5);
+	padding: var(--space-3) var(--space-4);
+	background: var(--error-soft);
+	border: 1px solid var(--error-line);
+	border-radius: var(--radius-sm);
+	color: var(--error);
+	text-align: center;
+}
+
+/* Empty state: message with a way back to browsing. */
+.empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+.browseLink {
+	font-weight: 600;
+}
+
+@media (max-width: 720px) {
+	.page {
+		padding: var(--space-5) var(--space-4) var(--space-6);
+	}
+
+	.title {
+		font-size: var(--text-xl);
+	}
+
+	.grid {
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+		gap: var(--space-4);
+	}
+}
+
+@media (max-width: 480px) {
+	.grid {
+		grid-template-columns: 1fr;
+	}
+}

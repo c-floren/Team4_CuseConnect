@@ -123,3 +123,15 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Shown when saving or unsaving a club fails */
+.saveError {
+  max-width: var(--wide-width);
+  margin: 0 auto var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  background: var(--error-soft);
+  border: 1px solid var(--error-line);
+  border-radius: var(--radius-sm);
+  color: var(--error);
+  text-align: center;
+}
