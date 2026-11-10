@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getClubs } from '../data/getClubs.js';
+import { useFavorites } from '../context/FavoritesContext.jsx';
 import OrgCard from '../components/OrgCard.jsx';
 import styles from './OrganizationsPage.module.css';
 
 export default function OrganizationsPage() {
+  const { errorMessage } = useFavorites();
   const [clubs, setClubs] = useState(null);
   const [failed, setFailed] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -87,6 +89,13 @@ export default function OrganizationsPage() {
 
 </div>
 
+      {/* Shown when saving or unsaving a club fails */}
+      {errorMessage && (
+        <p className={styles.saveError} role="alert">
+          {errorMessage}
+        </p>
+      )}
+
       {/* Display Clubs */}
       {failed ? (
         <p className={styles.message} role="alert">
@@ -105,6 +114,7 @@ export default function OrganizationsPage() {
           {filteredClubs.map((club) => (
             <li key={club.id}>
               <OrgCard
+                id={club.id}
                 name={club.name}
                 description={club.description}
               />
