@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CuseConnect — Manage Clubs (Staff)</title>
+  <link rel="stylesheet" href="staff.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="mainSidebar">
+      <div class="brand">
+        <img class="logo" src="cuseconnect-logo.png" alt="CuseConnect logo">
+      </div>
+
+      <nav class="nav-group">
+        <a href="_cuseconnect.html" class="nav-item">Home</a>
+        <a href="#" class="nav-item">Events</a>
+        <a href="#" class="nav-item">Saved Orgs</a>
+        <a href="#" class="nav-item">Forms</a>
+        <a href="friends.html" class="nav-item">Friends</a>
+        <a href="staff.html" class="nav-item active">Manage Clubs</a>
+      </nav>
+    </aside>
+
+    <!-- Main column -->
+    <div class="main">
+      <div class="page">
+        <div class="page-header">
+          <h1 class="page-title">Manage Clubs</h1>
+          <p class="page-subtitle">Staff only — add new clubs or reject existing ones.</p>
+        </div>
+
+        <!-- Pending clubs -->
+        <h2 class="section-title">Clubs Pending Approval</h2>
+        <div class="org-grid" id="pendingGrid">
+          <!-- Pending club cards are rendered here by staff.js -->
+        </div>
+        <p id="noPending" class="no-requests" style="display:none;">
+          No clubs pending approval.
+        </p>
+
+        <!-- Approved clubs -->
+        <h2 class="section-title">Approved Clubs</h2>
+        <div class="org-grid" id="approvedGrid">
+          <!-- Approved club cards are rendered here by staff.js -->
+        </div>
+        <p id="noApproved" class="no-requests" style="display:none;">
+          No approved clubs yet.
+        </p>
+
+        <!-- Rejected clubs -->
+        <h2 class="section-title">Rejected Clubs</h2>
+        <div class="org-grid" id="rejectedGrid">
+          <!-- Rejected club cards are rendered here by staff.js -->
+        </div>
+        <p id="noRejected" class="no-requests" style="display:none;">
+          No rejected clubs.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="staff.js"></script>
+</body>
+</html>
