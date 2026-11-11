@@ -30,6 +30,36 @@ create table if not exists public.quiz_responses (
   answers    jsonb not null
 );
 
+
+-- Events hosted by student organizations
+create table if not exists public.events (
+  id bigint generated always as identity primary key,
+  club_id bigint not null references public.clubs(id) on delete cascade,
+  title text not null,
+  description text not null,
+  event_date timestamptz not null,
+  location text not null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists events_event_date_idx
+  on public.events(event_date);
+
+-- Events are publicly readable
+alter table public.events enable row level security;
+
+grant select on public.events to anon, authenticated;
+
+drop policy if exists "Events are readable by everyone"
+  on public.events;
+
+create policy "Events are readable by everyone"
+  on public.events
+  for select
+  to anon, authenticated
+  using (true);
+
+
 -- ---------------------------------------------------------------------------
 -- Row Level Security
 -- The browser uses the public anon key, so these policies are what actually

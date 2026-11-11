@@ -4,6 +4,7 @@ import OrganizationsPage from './features/organizations/pages/OrganizationsPage.
 import { QuizProvider } from './features/quiz/context/QuizContext.jsx';
 import QuizPage from './features/quiz/pages/QuizPage.jsx';
 import ResultsPage from './features/quiz/pages/ResultsPage.jsx';
+import EventsPage from './features/events/pages/EventsPage.jsx';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       <Routes>
         <Route element={<AppLayout />}>
           <Route index element={<OrganizationsPage />} />
+          <Route path="events" element={<EventsPage />} />
           <Route path="quiz" element={<Navigate to="/quiz/1" replace />} />
           <Route path="quiz/:step" element={<QuizPage />} />
           <Route path="results" element={<ResultsPage />} />

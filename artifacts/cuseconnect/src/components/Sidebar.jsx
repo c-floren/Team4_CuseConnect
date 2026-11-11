@@ -6,14 +6,16 @@ import styles from './Sidebar.module.css';
  * Pages without a `to` aren't built yet. They render as plain text rather than
  * as `href="#"` links, so nothing pretends to navigate somewhere it can't.
  */
+
 const navItems = [
   { label: 'Home', to: '/', end: true },
-  { label: 'Events' },
+  { label: 'Events', to: '/events' },
   { label: 'Saved Orgs' },
   { label: 'Forms' },
   { label: 'Friends' },
   { label: 'Quiz', to: '/quiz' },
 ];
+
 
 export default function Sidebar() {
   return (
