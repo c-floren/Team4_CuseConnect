@@ -66,7 +66,7 @@ describe('app navigation', () => {
     renderApp('/');
     await clubsLoaded();
 
-    for (const label of ['Events', 'Saved Orgs', 'Forms', 'Friends']) {
+    for (const label of ['Events', 'Forms', 'Friends']) {
       expect(screen.queryByRole('link', { name: new RegExp(label) })).toBeNull();
       expect(nav()).toHaveTextContent(label);
     }

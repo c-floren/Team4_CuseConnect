@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CuseConnect — Start a Club</title>
+  <link rel="stylesheet" href="submit_club.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="mainSidebar">
+      <div class="brand">
+        <img class="logo" src="cuseconnect-logo.png" alt="CuseConnect logo">
+      </div>
+
+      <nav class="nav-group">
+        <a href="_cuseconnect.html" class="nav-item">Home</a>
+        <a href="#" class="nav-item">Events</a>
+        <a href="#" class="nav-item">Saved Orgs</a>
+        <a href="#" class="nav-item">Forms</a>
+        <a href="friends.html" class="nav-item">Friends</a>
+        <a href="submit_club.html" class="nav-item active">Start a Club</a>
+      </nav>
+    </aside>
+
+    <!-- Main column -->
+    <div class="main">
+      <div class="page">
+        <div class="page-header">
+          <h1 class="page-title">Start a Club</h1>
+          <p class="page-subtitle">Submit your club for staff review. You'll see it listed once it's approved.</p>
+        </div>
+
+        <form id="submitClubForm" class="club-form">
+
+          <div class="form-row">
+            <label for="clubName">Club name <span class="required">*</span></label>
+            <input type="text" id="clubName" placeholder="e.g. Chess Club" required>
+          </div>
+
+          <div class="form-row">
+            <label for="clubMission">Club mission / description <span class="required">*</span></label>
+            <textarea id="clubMission" rows="3" placeholder="What does your club do, and who is it for?" required></textarea>
+          </div>
+
+          <div class="form-row">
+            <label>Club leadership <span class="required">*</span> <span class="hint">(at least 3 people, with SYR email)</span></label>
+            <div id="leadershipFields" class="leadership-fields">
+              <div class="leader-row">
+                <input type="text" class="leader-input" placeholder="Leader 1 name" required>
+                <input type="email" class="leader-email" placeholder="abc123@syr.edu" required>
+              </div>
+              <div class="leader-row">
+                <input type="text" class="leader-input" placeholder="Leader 2 name" required>
+                <input type="email" class="leader-email" placeholder="abc123@syr.edu" required>
+              </div>
+              <div class="leader-row">
+                <input type="text" class="leader-input" placeholder="Leader 3 name" required>
+                <input type="email" class="leader-email" placeholder="abc123@syr.edu" required>
+              </div>
+            </div>
+            <button type="button" id="addLeaderBtn" class="btn-add-leader">+ Add another leader</button>
+          </div>
+
+          <div class="form-row">
+            <label for="clubAdvisor">Faculty / staff advisor <span class="required">*</span></label>
+            <input type="text" id="clubAdvisor" placeholder="e.g. Dr. Jane Smith" required>
+          </div>
+
+          <div class="form-row">
+            <label for="clubEmail">Contact email <span class="required">*</span></label>
+            <input type="email" id="clubEmail" placeholder="club@syr.edu" required>
+          </div>
+
+          <div class="form-row">
+            <label for="clubCategory">Category</label>
+            <select id="clubCategory">
+              <option value="">Select a category</option>
+              <option>Academic</option>
+              <option>Arts & Performance</option>
+              <option>Cultural</option>
+              <option>Religious / Spiritual</option>
+              <option>Service</option>
+              <option>Social / Special Interest</option>
+              <option>Sports & Recreation</option>
+              <option>Political / Activism</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="clubMeeting">Planned meeting time / location</label>
+            <input type="text" id="clubMeeting" placeholder="e.g. Thursdays at 6pm, HBC 101">
+          </div>
+
+          <div class="form-row">
+            <label for="clubSocial">Club social media</label>
+            <input type="text" id="clubSocial" placeholder="e.g. @cuseconnectclub on Instagram">
+          </div>
+
+          <div class="form-row">
+            <label for="clubConstitution">Club constitution <span class="required">*</span></label>
+            <input type="file" id="clubConstitution" accept=".pdf,.doc,.docx" required>
+            <span class="hint">PDF or Word document, under 2MB</span>
+            <span id="constitutionFileName" class="file-name"></span>
+          </div>
+
+          <button type="submit" class="btn-accept submit-btn">Submit for Approval</button>
+
+          <p id="submitSuccess" class="submit-success" hidden>
+            Your club has been submitted and is now pending staff approval.
+          </p>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="submit_club.js"></script>
+</body>
+</html>
