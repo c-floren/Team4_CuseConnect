@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CuseConnect — Funding Request</title>
+  <link rel="stylesheet" href="funding_request.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="mainSidebar">
+      <div class="brand">
+        <img class="logo" src="cuseconnect-logo.png" alt="CuseConnect logo">
+      </div>
+
+      <nav class="nav-group">
+        <a href="_cuseconnect.html" class="nav-item">Home</a>
+        <a href="events.html" class="nav-item">Events</a>
+        <a href="#" class="nav-item">Saved Orgs</a>
+        <a href="forms.html" class="nav-item active">Forms</a>
+        <a href="friends.html" class="nav-item">Friends</a>
+        <a href="submit_club.html" class="nav-item">Start a Club</a>
+      </nav>
+    </aside>
+
+    <!-- Main column -->
+    <div class="main">
+      <header class="topbar">
+        <a href="profile.html" class="avatar">SO</a>
+      </header>
+
+      <div class="page">
+        <div class="page-header">
+          <h1 class="page-title">Funding Request</h1>
+          <p class="page-subtitle">Request funding from Student Association for a club event, trip, or purchase.</p>
+        </div>
+
+        <p class="advance-notice">
+          This form must be submitted at least two weeks in advance of the date funds are needed.
+        </p>
+
+        <form id="fundingForm" class="funding-form">
+
+          <div class="form-row">
+            <label for="fundingClub">Club / organization name <span class="required">*</span></label>
+            <input type="text" id="fundingClub" placeholder="e.g. Chess Club" required>
+          </div>
+
+          <div class="form-row">
+            <label for="fundingRequester">Your name <span class="required">*</span></label>
+            <input type="text" id="fundingRequester" placeholder="e.g. Jane Doe" required>
+          </div>
+
+          <div class="form-row">
+            <label for="fundingEmail">SYR email <span class="required">*</span></label>
+            <input type="email" id="fundingEmail" placeholder="abc123@syr.edu" required>
+          </div>
+
+          <div class="form-row">
+            <label for="fundingEvent">What event is this funding for? <span class="required">*</span></label>
+            <input type="text" id="fundingEvent" placeholder="e.g. Fall Banquet" required>
+          </div>
+
+          <div class="form-row">
+            <label for="fundingPurpose">Purpose of request <span class="required">*</span></label>
+            <select id="fundingPurpose" required>
+              <option value="">Select a purpose</option>
+              <option>Event</option>
+              <option>Travel / Conference</option>
+              <option>Equipment / Supplies</option>
+              <option>Marketing / Printing</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label>Where should this funding come from? <span class="required">*</span></label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="fundingSource" value="fundraising" required>
+                Organization's fundraising account
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="fundingSource" value="student-engagement" required>
+                Requesting funds from Student Engagement
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="fundingDate">Date funds are needed by <span class="required">*</span></label>
+            <input type="date" id="fundingDate" required>
+          </div>
+
+          <!-- Itemized funding requests -->
+          <div class="form-row">
+            <label>Itemized funding requests <span class="required">*</span> <span class="hint">(one row per item)</span></label>
+            <div id="itemFields" class="item-fields">
+              <div class="item-row">
+                <input type="text" class="item-description" placeholder="e.g. Catering for 50 guests" required>
+                <span class="item-dollar">$</span>
+                <input type="number" class="item-amount" min="0" step="0.01" placeholder="0.00" required>
+              </div>
+            </div>
+            <button type="button" id="addItemBtn" class="btn-add-item">+ Add another item</button>
+
+            <div class="total-row">
+              <span>Total requested</span>
+              <span id="fundingTotal" class="total-amount">$0.00</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="fundingLinks">Links <span class="hint">(quotes, invoices, event page — one per line)</span></label>
+            <textarea id="fundingLinks" rows="2" placeholder="https://..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <label for="fundingFiles">Supporting files <span class="hint">(receipts, quotes — PDF, Word, or image, 2MB each)</span></label>
+            <input type="file" id="fundingFiles" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg" multiple>
+            <div id="fundingFileList" class="file-list"></div>
+          </div>
+
+          <button type="submit" class="btn-accept submit-btn">Submit Request</button>
+
+          <p id="submitSuccess" class="submit-success" hidden>
+            Your funding request has been submitted and is awaiting Finance Board review.
+          </p>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="funding_request.js"></script>
+</body>
+</html>
