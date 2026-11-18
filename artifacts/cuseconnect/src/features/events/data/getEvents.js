@@ -19,7 +19,7 @@ export async function getEvents() {
 
   const { data, error } = await supabase
   .from('events')
-  .select('id, title, description, event_date, location, club_id')
+  .select('id, title, description, event_date, location, club_id, club:clubs(name)')
   .gte('event_date', new Date().toISOString())
   .order('event_date', { ascending: true });
 
