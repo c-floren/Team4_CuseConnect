@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CuseConnect — Event Request</title>
+  <link rel="stylesheet" href="create_event.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="mainSidebar">
+      <div class="brand">
+        <img class="logo" src="cuseconnect-logo.png" alt="CuseConnect logo">
+      </div>
+
+      <nav class="nav-group">
+        <a href="_cuseconnect.html" class="nav-item">Home</a>
+        <a href="events.html" class="nav-item">Events</a>
+        <a href="#" class="nav-item">Saved Orgs</a>
+        <a href="forms.html" class="nav-item active">Forms</a>
+        <a href="friends.html" class="nav-item">Friends</a>
+        <a href="submit_club.html" class="nav-item">Start a Club</a>
+      </nav>
+    </aside>
+
+    <!-- Main column -->
+    <div class="main">
+      <header class="topbar">
+        <a href="profile.html" class="avatar">SO</a>
+      </header>
+
+      <div class="page">
+        <div class="page-header">
+          <h1 class="page-title">Event Request</h1>
+          <p class="page-subtitle">Post an event for your org. It'll show up on the Events calendar right away.</p>
+        </div>
+
+        <form id="createEventForm" class="event-form">
+
+          <div class="form-row">
+            <label for="eventName">Event name <span class="required">*</span></label>
+            <input type="text" id="eventName" placeholder="e.g. General Meeting" required>
+          </div>
+
+          <div class="form-row">
+            <label for="eventOrg">Hosting organization <span class="required">*</span></label>
+            <input type="text" id="eventOrg" placeholder="e.g. Chess Club" required>
+          </div>
+
+          <div class="form-row two-up">
+            <div>
+              <label for="eventDate">Date <span class="required">*</span></label>
+              <input type="date" id="eventDate" required>
+            </div>
+            <div>
+              <label for="eventTime">Time <span class="required">*</span></label>
+              <input type="time" id="eventTime" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="eventLocation">Location <span class="required">*</span></label>
+            <input type="text" id="eventLocation" placeholder="e.g. HBC Atrium" required>
+          </div>
+
+          <div class="form-row">
+            <label for="eventCategory">Category</label>
+            <select id="eventCategory">
+              <option value="">Select a category</option>
+              <option>Academic</option>
+              <option>Arts & Performance</option>
+              <option>Cultural</option>
+              <option>Religious / Spiritual</option>
+              <option>Service</option>
+              <option>Social / Special Interest</option>
+              <option>Sports & Recreation</option>
+              <option>Political / Activism</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="eventDescription">Description</label>
+            <textarea id="eventDescription" rows="3" placeholder="What should people expect at this event?"></textarea>
+          </div>
+
+          <button type="submit" class="btn-accept submit-btn">Post Event</button>
+
+          <p id="submitSuccess" class="submit-success" hidden>
+            Your event has been posted — check the Events calendar to see it.
+          </p>
+
+        </form>
+
+        <p class="funding-note">
+          Need funding for this event? Fill out a <a href="funding_request.html">Funding Request</a> form.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="create_event.js"></script>
+</body>
+</html>
