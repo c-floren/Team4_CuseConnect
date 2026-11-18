@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CuseConnect — Forms</title>
+  <link rel="stylesheet" href="forms.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="mainSidebar">
+      <div class="brand">
+        <img class="logo" src="cuseconnect-logo.png" alt="CuseConnect logo">
+      </div>
+
+      <nav class="nav-group">
+        <a href="_cuseconnect.html" class="nav-item">Home</a>
+        <a href="events.html" class="nav-item">Events</a>
+        <a href="#" class="nav-item">Saved Orgs</a>
+        <a href="forms.html" class="nav-item active">Forms</a>
+        <a href="friends.html" class="nav-item">Friends</a>
+        <a href="submit_club.html" class="nav-item">Start a Club</a>
+      </nav>
+    </aside>
+
+    <!-- Main column -->
+    <div class="main">
+      <header class="topbar">
+        <a href="profile.html" class="avatar">SO</a>
+      </header>
+
+      <div class="page">
+        <div class="forms-top-row">
+          <div class="page-header forms-page-header">
+            <h1 class="page-title">Forms</h1>
+          </div>
+          <!--
+            No submissions history exists yet since there's no backend. This
+            link is a placeholder for a future "My Submissions" view.
+          -->
+          <a href="#" class="view-submissions-link">View Submissions</a>
+        </div>
+
+        <div class="forms-layout">
+
+          <!-- Search / filter panel -->
+          <aside class="forms-filter-card">
+            <label class="forms-search-label" for="formSearch">Search Available Forms</label>
+            <input type="text" id="formSearch" class="forms-search-input" placeholder="Search by form name...">
+
+            <label class="forms-filter-label" for="formCategoryFilter">Category</label>
+            <select id="formCategoryFilter" class="forms-category-select">
+              <option value="">All categories</option>
+              <option value="events">Events</option>
+              <option value="funding">Funding</option>
+            </select>
+          </aside>
+
+          <!-- Available forms list -->
+          <div class="forms-list-card">
+            <p class="forms-count"><span id="formsCount">2</span> Available Forms</p>
+
+            <div id="formsList" class="forms-list">
+
+              <div class="form-row-item" data-name="event request" data-category="events">
+                <div class="form-row-main">
+                  <h3>Event Request</h3>
+                  <p class="form-row-meta">Post a meeting, social, or fundraiser so it shows up on the Events calendar.</p>
+                  <p class="form-row-owner">Student Organizations</p>
+                </div>
+                <a href="create_event.html" class="btn-start">Start</a>
+              </div>
+
+              <div class="form-row-item" data-name="funding request" data-category="funding">
+                <div class="form-row-main">
+                  <h3>Funding Request</h3>
+                  <p class="form-row-meta">Request funding from Student Association for a club event, trip, or purchase.</p>
+                  <p class="form-row-owner">Student Association — Finance Board</p>
+                </div>
+                <a href="funding_request.html" class="btn-start">Start</a>
+              </div>
+
+            </div>
+
+            <p id="noFormsMatch" class="no-requests" style="display:none;">
+              No forms match your search.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="forms.js"></script>
+</body>
+</html>
