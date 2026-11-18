@@ -13,7 +13,14 @@ export default function EventsPage() {
 
     getEvents()
       .then((data) => active && setEvents(data))
-      .catch(() => active && setFailed(true));
+      .catch((error) => {
+  console.error('Events page loading failed:', error);
+
+  if (active) {
+    setFailed(true);
+  }
+});
+      
 
     return () => {
       active = false;

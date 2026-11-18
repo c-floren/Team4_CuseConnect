@@ -23,7 +23,8 @@ export async function getEvents() {
   .gte('event_date', new Date().toISOString())
   .order('event_date', { ascending: true });
 
-  if (error) {
+    if (error) {
+    console.error('Supabase events error:', error);
     throw error;
   }
 
